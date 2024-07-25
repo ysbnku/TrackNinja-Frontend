@@ -1,0 +1,15 @@
+/* ERROR PAGE */
+.error-page-body__message {
+  line-height: 4rem;
+  cursor: default;
+}
+
+/* REDIRECT LINK */
+.redirect-link {
+  color: #FAEBD7;
+}
+
+.redirect-link:hover {
+  text-decoration: none;
+  color: var(--dark);
+}

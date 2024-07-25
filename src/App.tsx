@@ -11,6 +11,7 @@ import axios, { AxiosError, AxiosResponse } from 'axios';
 import { Client } from './models/client.model';
 import { Logs } from './models/logs.model';
 import { log } from 'console';
+import LogList from './pages/LogList';
 
 
 function App() {
@@ -41,40 +42,19 @@ function App() {
       });
   }, []);
 
+  let routes = (
+    <Routes>
+           
+      <Route path="/logs" element={<LogList data={[]} />} />
+      </Routes>
+  );
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        {isLoading && <p>Loading...</p>}
-        {isError && <p>Error: {errorMessage}</p>}
-        <div>
-          <h1> Welcome to TrackNinja </h1>
-          <table>
-
-            <th>id</th>
-            <th>User Id</th>
-            <th>Date</th>
-            <th>User Name</th>
-            <th>Application Name</th>
-            <th>Duration</th>
-            <th>Time Spent</th>
-            {logs?.data.map(log => (
-              <tr>
-                <td>{log.id}</td>
-                <td>{log.id}</td>
-                <td>{log.date}</td>
-                <td>yavuz.bitmez</td>
-                <td>{log.appName}</td>
-                <td>{log.appDuration}</td>
-                <td>{log.timeSpent}</td>
-              </tr>
-
-            ))}
-          </table>
-
-          <MyButton />
-        </div>
-      </header>
-    </div>
+    <BrowserRouter basename="/admin">
+      <div>
+        {routes}
+      </div>
+    </BrowserRouter>
   );
 
   function MyButton() {

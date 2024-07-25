@@ -1,5 +1,5 @@
 export interface Logs {
-  data: [Log];
+  data: Log[];
 }
 
  export interface Log {
