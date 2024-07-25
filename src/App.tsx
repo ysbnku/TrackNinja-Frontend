@@ -46,22 +46,17 @@ function App() {
     <Routes>
            
       <Route path="/logs" element={<LogList data={[]} />} />
+
       </Routes>
   );
   
   return (
-    <BrowserRouter basename="/admin">
+    <BrowserRouter>
       <div>
         {routes}
       </div>
     </BrowserRouter>
   );
-
-  function MyButton() {
-    return (
-      <button>I'm a button</button>
-    );
-  }
 }
 
 export default App;
