@@ -1,4 +1,8 @@
- export interface Logs {
+export interface Logs {
+  data: [Log];
+}
+
+ export interface Log {
     id: number;
     subUserId: string;
     appDuration: string;
@@ -6,4 +10,6 @@
     date: string;
     timeSpent: string;
   }
+
+
   
