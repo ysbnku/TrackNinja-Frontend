@@ -16,21 +16,21 @@ function App() {
 
   let routes = (
     <Routes>
-      <Route path="" element={<Home/>} />
+      <Route path="" element={<Home />} />
       <Route path="admin/logs" element={<LogList data={[]} />} />
       <Route path="login" element={<Login />} />
       <Route path="register" element={<Register />} />
       <Route path="*" element={<Navigate replace to="/" />} />
-      </Routes>
+    </Routes>
   );
-  
+
   return (
-      <BrowserRouter basename="/">
-        <div>
-       <Layout>{routes}</Layout>
-        </div>
-      </BrowserRouter>
-    );
+    <BrowserRouter basename="/">
+      <div>
+        <Layout>{routes}</Layout>
+      </div>
+    </BrowserRouter>
+  );
 }
 
 export default App;
