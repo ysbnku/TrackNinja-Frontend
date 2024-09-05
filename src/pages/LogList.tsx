@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Logs } from '../models/logs.model';
 import { useParams } from 'react-router-dom';
 import ErrorComponent from '../components/ErrorComponent/ErrorComponent';
-import MainWrapper from '../components/layout/MainWrapper';
 import axios, { AxiosError, AxiosResponse } from 'axios';
+import { DataTable} from 'primereact/datatable';
+import { Column } from 'primereact/column';
 
 const LogList: React.FC<Logs> = () => {
     const [logs, setLogs] = useState<Logs>();
-    const [isLoading, setIsLoading] = useState<boolean>(true);
     const [isError, setIsError] = useState<boolean>(false);
     const [errorMessage, setErrorMessage] = useState<string>('Log list error');
   
@@ -26,8 +26,6 @@ const LogList: React.FC<Logs> = () => {
         console.log("I am here")
 
         setLogs(logs);
-        setIsLoading(false);
-        //   console.log(logs.data[2].appName);
 
       })
       .catch((err: AxiosError | Error) => {
@@ -38,28 +36,14 @@ const LogList: React.FC<Logs> = () => {
   }, []);
   
   content = (
-
-    <table>
-    <th>id</th>
-    <th>User Id</th>
-    <th>Date</th>
-    <th>User Name</th>
-    <th>Application Name</th>
-    <th>Duration</th>
-    <th>Time Spent</th>
-    {logs?.data.map(log => (
-      <tr>
-        <td>{log.id}</td>
-        <td>{log.id}</td>
-        <td>{log.date}</td>
-        <td>yavuz.bitmez</td>
-        <td>{log.appName}</td>
-        <td>{log.appDuration}</td>
-        <td>{log.timeSpent}</td>
-      </tr>
-
-    ))}
-  </table>  
+    <>
+<DataTable value={logs?.data} paginator rows={13} rowsPerPageOptions={[5, 10, 25, 50]} tableStyle={{ minWidth: '50rem' }}>
+    <Column field="id" header="User Id" style={{ width: '15%' }}></Column>
+    <Column field="date" header="Date" style={{ width: '15%' }}></Column>
+    <Column field="appName" header="Application Name" style={{ width: '25%' }}></Column>
+    <Column field="appDuration" header="Duration" style={{ width: '15%' }}></Column>
+</DataTable>
+    </>
 );
   
     if (isError) {

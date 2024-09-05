@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 import { useEffect, useState } from 'react';
@@ -8,11 +7,16 @@ import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom';
 ///AXIOS
 import axios, { AxiosError, AxiosResponse } from 'axios';
 ///MODELS
-import { Client } from './models/client.model';
 import { Logs } from './models/logs.model';
-import { log } from 'console';
 import LogList from './pages/LogList';
-
+import Layout from './Layout';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import "primereact/resources/themes/lara-light-indigo/theme.css";
+import "primereact/resources/primereact.min.css";
+import "primeicons/primeicons.css";
+import "primeflex/primeflex.css"
+import Register from './pages/Register';
 
 function App() {
   const [logs, setLogs] = useState<Logs>();
@@ -44,19 +48,21 @@ function App() {
 
   let routes = (
     <Routes>
-           
-      <Route path="/logs" element={<LogList data={[]} />} />
-
+      <Route path="" element={<Home/>} />
+      <Route path="admin/logs" element={<LogList data={[]} />} />
+      <Route path="login" element={<Login />} />
+      <Route path="register" element={<Register />} />
+      <Route path="*" element={<Navigate replace to="/" />} />
       </Routes>
   );
   
   return (
-    <BrowserRouter>
-      <div>
-        {routes}
-      </div>
-    </BrowserRouter>
-  );
+      <BrowserRouter basename="/">
+        <div>
+       <Layout>{routes}</Layout>
+        </div>
+      </BrowserRouter>
+    );
 }
 
 export default App;
