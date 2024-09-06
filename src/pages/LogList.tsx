@@ -1,43 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { Logs } from '../models/logs.model';
-import { useParams } from 'react-router-dom';
-import ErrorComponent from '../components/ErrorComponent/ErrorComponent';
-import axios, { AxiosError, AxiosResponse } from 'axios';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
+import { LogsService } from '../services/LogsService';
 
 const LogList: React.FC<Logs> = () => {
-	const [logs, setLogs] = useState<Logs>();
-	const [isError, setIsError] = useState<boolean>(false);
-	const [errorMessage, setErrorMessage] = useState<string>('Log list error');
-
-	const params = useParams();
-
-	let content;
+	let [state, setState] = useState({
+		loading: false,
+		logs: [],
+		errorMessage: null
+	});
 
 	useEffect(() => {
-		axios
-			.get('https://trackninja-backend-52c9c95cd779.herokuapp.com/api/logs')
-			.then((res: AxiosResponse) => {
-				console.log("Send request")
-				return res.data;
-			})
-			.then((logs: Logs) => {
-				console.log("I am here")
-
-				setLogs(logs);
-
-			})
-			.catch((err: AxiosError | Error) => {
-				console.log(err);
-				setIsError(true);
-				setErrorMessage(err.message);
-			});
+		fetchUserLogs();
 	}, []);
 
-	content = (
+	async function fetchUserLogs() {
+		let response = await LogsService.getLogs();
+		setState({
+			...state,
+			loading: false,
+			logs: response.data
+		});
+	}
+
+	return (
 		<>
-			<DataTable value={logs?.data} paginator rows={13} rowsPerPageOptions={[5, 10, 25, 50]} tableStyle={{ minWidth: '50rem' }}>
+			<DataTable value={state.logs} paginator rows={13} rowsPerPageOptions={[5, 10, 25, 50]} tableStyle={{ minWidth: '50rem' }}>
 				<Column field="id" header="User Id" style={{ width: '15%' }}></Column>
 				<Column field="date" header="Date" style={{ width: '15%' }}></Column>
 				<Column field="appName" header="Application Name" style={{ width: '25%' }}></Column>
@@ -45,14 +34,6 @@ const LogList: React.FC<Logs> = () => {
 			</DataTable>
 		</>
 	);
-
-	if (isError) {
-		content = (
-			<ErrorComponent errorMessage={errorMessage}></ErrorComponent>
-		);
-	}
-
-	return content;
 };
 
 export default LogList;

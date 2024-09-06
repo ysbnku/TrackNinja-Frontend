@@ -1,13 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Logs } from '../models/logs.model';
-import { useParams } from 'react-router-dom';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
-import { Divider } from 'primereact/divider';
-
-function didTappedLogin() {
-  window.open('/register', '_self')
-}
 
 const Login = () => {
   return (
@@ -18,7 +11,7 @@ const Login = () => {
             <img src="/images/logo.png" alt="hyper" height={50} className="mb-3" />
             <div className="text-900 text-3xl font-medium mb-3">Welcome</div>
             <span className="text-600 font-medium line-height-3">Don't have an account?</span>
-            <a className="font-medium no-underline ml-2 text-blue-500 cursor-pointer">Create today!</a>
+            <a className="font-medium no-underline ml-2 text-blue-500 cursor-pointer" onClick={didTappedRegister}>Create today!</a>
           </div>
 
           <div>
@@ -37,6 +30,14 @@ const Login = () => {
       </div>
     </>
   );
+}
+
+function didTappedLogin() {
+  window.open('/admin', '_self')
+}
+
+function didTappedRegister() {
+  window.open('/register', '_self')
 }
 
 export default Login;
