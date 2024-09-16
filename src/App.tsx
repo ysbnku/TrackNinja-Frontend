@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom';
 
@@ -12,8 +11,8 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Admin from './pages/Admin';
-function App() {
 
+function App() {
   let routes = (
     <Routes>
       <Route path="" element={<Home />} />

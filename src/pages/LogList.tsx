@@ -4,6 +4,9 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { LogsService } from '../services/LogsService';
 
+
+
+
 const LogList: React.FC<Logs> = () => {
 	let [state, setState] = useState({
 		loading: false,

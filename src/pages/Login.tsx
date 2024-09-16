@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 
 const Login = () => {
+
+  const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
   return (
     <>
       <div className="flex align-items-center justify-content-center mt-8">
@@ -16,10 +20,10 @@ const Login = () => {
 
           <div>
             <label htmlFor="email" className="block text-900 font-medium mb-2">Email</label>
-            <InputText id="email" type="text" placeholder="Email address" className="w-full mb-3" />
+            <InputText id="email" type="text" placeholder="Email address" className="w-full mb-3" onChange={(e) => setName(e.target.value)} />
 
             <label htmlFor="password" className="block text-900 font-medium mb-2">Password</label>
-            <InputText id="password" type="password" placeholder="Password" className="w-full mb-3" />
+            <InputText id="password" type="password" placeholder="Password" className="w-full mb-3" onChange={(e) => setPassword(e.target.value)} />
 
             <div className="flex align-items-center justify-content-between mb-6">
               <a className="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer">Forgot your password?</a>
@@ -30,14 +34,36 @@ const Login = () => {
       </div>
     </>
   );
+
+  async function didTappedLogin() {
+    await axios.post('http://127.0.0.1:8086/api/login', {
+      name: name,
+      password: password
+  })
+      .then(response => {
+        const { message, sessionKey } = response.data;
+        if (message === "Success") {
+          console.log("Login successful, sessionKey:", sessionKey);
+      
+          localStorage.setItem('sessionKey', sessionKey);
+          window.open('/admin', '_self');
+      } else {
+          console.error("Login failed, unexpected message:", message);
+      }
+      })
+      .catch(error => {
+          console.error("Api request error:  ", error);
+      });
+  }
+  
+  function didTappedRegister() {
+    window.open('/register', '_self')
+  }
+
 }
 
-function didTappedLogin() {
-  window.open('/admin', '_self')
-}
 
-function didTappedRegister() {
-  window.open('/register', '_self')
-}
+
+
 
 export default Login;
