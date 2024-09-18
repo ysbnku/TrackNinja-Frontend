@@ -10,12 +10,18 @@ const LeftMenu = () => {
         { label: 'Settings', icon: 'pi pi-fw pi-cog' },
         { label: 'License', icon: 'pi pi-fw pi-id-card' },
         { label: 'Documentation', icon: 'pi pi-fw pi-file' },
-        { label: 'Log Out', icon: 'pi pi-fw pi-sign-out' }
+        { label: 'Log Out', icon: 'pi pi-fw pi-sign-out', command: () => onClickLogOut() }
     ];
 
+    function onClickLogOut() {
+        localStorage.removeItem('sessionKey');
+        window.open('/login', '_self')
+    }
     return (
         <Menu className="col-2 " model={items} />
     );
 }
+
+
 
 export default LeftMenu;

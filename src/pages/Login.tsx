@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import axios, { AxiosError, AxiosResponse } from 'axios';
-
+import { BASEURL } from '../constants';
 const Login = () => {
 
-  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   return (
     <>
@@ -20,7 +20,7 @@ const Login = () => {
 
           <div>
             <label htmlFor="email" className="block text-900 font-medium mb-2">Email</label>
-            <InputText id="email" type="text" placeholder="Email address" className="w-full mb-3" onChange={(e) => setName(e.target.value)} />
+            <InputText id="email" type="text" placeholder="Email address" className="w-full mb-3" onChange={(e) => setEmail(e.target.value)} />
 
             <label htmlFor="password" className="block text-900 font-medium mb-2">Password</label>
             <InputText id="password" type="password" placeholder="Password" className="w-full mb-3" onChange={(e) => setPassword(e.target.value)} />
@@ -36,26 +36,26 @@ const Login = () => {
   );
 
   async function didTappedLogin() {
-    await axios.post('http://127.0.0.1:8086/api/login', {
-      name: name,
+    await axios.post(BASEURL + '/login', {
+      email: email,
       password: password
-  })
+    })
       .then(response => {
-        const { message, sessionKey } = response.data;
+        const { message, sessionKey, accountCode } = response.data;
         if (message === "Success") {
           console.log("Login successful, sessionKey:", sessionKey);
-      
+          localStorage.setItem('accountCode', accountCode);
           localStorage.setItem('sessionKey', sessionKey);
           window.open('/admin', '_self');
-      } else {
+        } else {
           console.error("Login failed, unexpected message:", message);
-      }
+        }
       })
       .catch(error => {
-          console.error("Api request error:  ", error);
+        console.error("Api request error:  ", error);
       });
   }
-  
+
   function didTappedRegister() {
     window.open('/register', '_self')
   }

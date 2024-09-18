@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Logs } from '../models/logs.model';
-import { useParams } from 'react-router-dom';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
-import { Message } from 'primereact/message';
+import { BASEURL } from '../constants';
 
 import axios, { AxiosError, AxiosResponse } from 'axios';
 
@@ -14,8 +12,9 @@ const Register = () => {
     const [password, setPassword] = useState('');
     const [bindingid, setBindingid] = useState('');
     useEffect(() => {
-        setBindingid("TN00112-TIMESTAMP");
-    })
+        setBindingid("#TN"+Date.now());
+
+    },[]);
 
     return (
         <>
@@ -50,10 +49,8 @@ const Register = () => {
 
   
     async function didTappedRegister() {
-        if (name == '' || surname == '' || email == '' || password == '') {
-            
-        } else {
-            await axios.post('http://127.0.0.1:8086/api/register', {
+        if (name != '' || surname != '' || email != '' || password != '') {
+            await axios.post(BASEURL + '/register', {
                 name: name,
                 surname: surname,
                 email: email,
@@ -63,15 +60,15 @@ const Register = () => {
                 .then(response => {
                     const { message, sessionKey } = response.data;
                     if (message === "Success") {
-                        console.log("register successful");
+                        window.open('/login', '_self');
                     } else {
                         console.error("register failed, unexpected message:", message);
                     }
                 })
                 .catch(error => {
                     console.error("Api request error:  ", error);
-                });
-        }
+                }); 
+        } 
     }
 }
 

@@ -11,6 +11,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Admin from './pages/Admin';
+import Profile from './pages/Profile';
 
 function App() {
   let routes = (
@@ -19,6 +20,7 @@ function App() {
       <Route path="admin/logs" element={<LogList data={[]} />} />
       <Route path="admin" element={<Admin />} />
       <Route path="login" element={<Login />} />
+      <Route path="profile" element={<Profile />} />
       <Route path="register" element={<Register />} />
       <Route path="*" element={<Navigate replace to="/" />} />
     </Routes>
