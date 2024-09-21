@@ -17,7 +17,7 @@ function App() {
   let routes = (
     <Routes>
       <Route path="" element={<Home />} />
-      <Route path="admin/logs" element={<LogList data={[]} />} />
+      <Route path="admin/logs" element={<LogList />} />
       <Route path="admin" element={<Admin />} />
       <Route path="login" element={<Login />} />
       <Route path="profile" element={<Profile />} />

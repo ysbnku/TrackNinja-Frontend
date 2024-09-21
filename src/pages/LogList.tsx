@@ -7,7 +7,7 @@ import { LogsService } from '../services/LogsService';
 
 
 
-const LogList: React.FC<Logs> = () => {
+const LogList: React.FC = () => {
 	let [state, setState] = useState({
 		loading: false,
 		logs: [],
