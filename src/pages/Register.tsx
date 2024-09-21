@@ -12,16 +12,17 @@ const Register = () => {
     const [password, setPassword] = useState('');
     const [bindingid, setBindingid] = useState('');
     useEffect(() => {
-        setBindingid("#TN"+Date.now());
-
-    },[]);
+        setBindingid("#TN" + Date.now());
+    }, []);
 
     return (
         <>
             <div className="flex align-items-center justify-content-center mt-8">
                 <div className="surface-card p-4 shadow-2 border-round w-full lg:w-6">
                     <div className="text-center mb-5">
-                        <img src="/images/logo.png" alt="hyper" height={50} className="mb-3" />
+                        <a href="/">
+                            <img src="/images/logo.png" alt="hyper" height={50} className="mb-3" />
+                        </a>
                         <div className="text-900 text-3xl font-medium mb-3">Register your account</div>
                     </div>
                     <div>
@@ -47,7 +48,7 @@ const Register = () => {
         </>
     );
 
-  
+
     async function didTappedRegister() {
         if (name != '' || surname != '' || email != '' || password != '') {
             await axios.post(BASEURL + '/register', {
@@ -67,8 +68,8 @@ const Register = () => {
                 })
                 .catch(error => {
                     console.error("Api request error:  ", error);
-                }); 
-        } 
+                });
+        }
     }
 }
 

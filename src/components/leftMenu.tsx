@@ -3,7 +3,7 @@ import { Menu } from 'primereact/menu';
 
 const LeftMenu = () => {
     let items = [
-        { label: 'Dashboard', icon: 'pi pi-fw pi-chart-pie' },
+        { label: 'Dashboard', icon: 'pi pi-fw pi-chart-pie', command: () => window.open('/admin', '_self')},
         { label: 'Users', icon: 'pi pi-fw pi-user' },
         { label: 'Logs', icon: 'pi pi-fw pi-download' },
         { label: 'Filter', icon: 'pi pi-fw pi-filter' },

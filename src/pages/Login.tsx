@@ -3,8 +3,8 @@ import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { BASEURL } from '../constants';
-const Login = () => {
 
+const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   return (
@@ -12,7 +12,9 @@ const Login = () => {
       <div className="flex align-items-center justify-content-center mt-8">
         <div className="surface-card p-4 shadow-2 border-round w-full lg:w-6">
           <div className="text-center mb-5">
-            <img src="/images/logo.png" alt="hyper" height={50} className="mb-3" />
+          <a href="/">
+          <img src="/images/logo.png" alt="hyper" height={50} className="mb-3" />
+          </a>
             <div className="text-900 text-3xl font-medium mb-3">Welcome</div>
             <span className="text-600 font-medium line-height-3">Don't have an account?</span>
             <a className="font-medium no-underline ml-2 text-blue-500 cursor-pointer" onClick={didTappedRegister}>Create today!</a>
@@ -43,7 +45,6 @@ const Login = () => {
       .then(response => {
         const { message, sessionKey, accountCode } = response.data;
         if (message === "Success") {
-          console.log("Login successful, sessionKey:", sessionKey);
           localStorage.setItem('accountCode', accountCode);
           localStorage.setItem('sessionKey', sessionKey);
           window.open('/admin', '_self');
@@ -61,9 +62,5 @@ const Login = () => {
   }
 
 }
-
-
-
-
 
 export default Login;
