@@ -5,7 +5,7 @@ const AdminLoading = () => {
 
   return (
     <>
-      <div className="flex justify-content-center align-items-center h-screen">
+      <div className="flex justify-content-center align-items-center h-full">
         <ProgressSpinner />
       </div>
     </>

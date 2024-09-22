@@ -2,9 +2,6 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom';
 
-///AXIOS
-import axios, { AxiosError, AxiosResponse } from 'axios';
-///MODELS
 import LogList from './pages/LogList';
 import Layout from './Layout';
 import Home from './pages/Home';
@@ -12,12 +9,16 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Admin from './pages/Admin';
 import Profile from './pages/Profile';
+import UserSettings from './pages/UserSettings';
+import License from './pages/License';
 
 function App() {
   let routes = (
     <Routes>
       <Route path="" element={<Home />} />
       <Route path="admin/logs" element={<LogList />} />
+      <Route path="admin/usersettings" element={<UserSettings />} />
+      <Route path="admin/license" element={<License />} />
       <Route path="admin" element={<Admin />} />
       <Route path="login" element={<Login />} />
       <Route path="profile" element={<Profile />} />

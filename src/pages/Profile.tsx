@@ -53,7 +53,6 @@ const Profile = () => {
               <InputText invalid = { oldPassword != state.password && oldPassword != "" } type="password" placeholder="Old password" className="w-full mb-3 p-inputtext-sm" onChange={(e) => setOldPassword(e.target.value)} />
               <InputText type="password" placeholder="New password" className="w-full mb-3 p-inputtext-sm" onChange={(e) => setNewPassword(e.target.value)} />
               <Button label="Save" icon="pi pi-save" className="w-full" onClick={didTappedSaveButton} />
-
             </div>
           </div>
           <div className="col-1">
@@ -84,15 +83,13 @@ const Profile = () => {
   }
 
   async function fetchUserInformation() {
-    await axios.post(BASEURL + '/getAdminInformation', {
-      id: Number(localStorage.getItem('accountCode')),
-    })
+    await axios.get(BASEURL + '/getAdminInformation/'+ localStorage.getItem('accountCode'))
       .then(response => {
         setState({
           name: response.data.admin.name,
           surname: response.data.admin.surname,
           email: response.data.admin.email,
-          bindingid: response.data.admin.bindingid,
+          bindingid: response.data.admin.bindingID,
           password: response.data.admin.password
         });
       })

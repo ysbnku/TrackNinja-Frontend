@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Logs } from '../models/logs.model';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import axios, { AxiosError, AxiosResponse } from 'axios';
