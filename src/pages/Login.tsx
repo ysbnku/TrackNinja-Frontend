@@ -43,14 +43,9 @@ const Login = () => {
       password: password
     })
       .then(response => {
-        const { message, sessionKey, accountCode } = response.data;
-        if (message === "Success") {
-          localStorage.setItem('accountCode', accountCode);
-          localStorage.setItem('sessionKey', sessionKey);
-          window.open('/admin', '_self');
-        } else {
-          console.error("Login failed, unexpected message:", message);
-        }
+        localStorage.setItem('accountCode', response.data.accountCode);
+        localStorage.setItem('sessionKey', response.data.sessionKey);
+        window.open('/admin', '_self');
       })
       .catch(error => {
         console.error("Api request error:  ", error);
