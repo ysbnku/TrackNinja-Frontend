@@ -83,7 +83,7 @@ const UserSettings: React.FC = () => {
 			<div className="grid h-screen">
 				<LeftMenu />
 				<div className="col">
-					<DataTable value={state.data} dataKey="id" editMode="row" onRowEditComplete={onRowEditComplete} tableStyle={{ minWidth: '50rem' }}>
+					<DataTable value={state.data} dataKey="id" paginator rows={15} editMode="row" onRowEditComplete={onRowEditComplete} tableStyle={{ minWidth: '50rem' }}>
 						<Column field="pcname" header="PC Name" ></Column>
 						<Column field="name" header="Name" editor={(options) => textEditor(options)} style={{ width: '35%' }}></Column>
 						<Column field="surname" header="Surname" editor={(options) => textEditor(options)} style={{ width: '30%' }}></Column>
