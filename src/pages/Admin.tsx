@@ -15,8 +15,8 @@ const Admin = () => {
     return (
       <>
         <AdminMenu />
-        <div className="grid">
-          <LeftMenu />
+        <div className="grid h-screen">
+        <LeftMenu />
           <div className="col">
           </div>
         </div>

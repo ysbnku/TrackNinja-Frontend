@@ -36,16 +36,16 @@ const UserLogList: React.FC = () => {
 		<>
 			<AdminMenu />
 			<div className="grid h-screen">
-				<LeftMenu />
+			<LeftMenu />
 				<div className="col">
-					<DataTable value={state.logs} dataKey="id" paginator rows={10} filters={filters} 
+					<DataTable value={state.logs} dataKey="id" paginator rows={10} rowsPerPageOptions={[20, 25, 35, 50]} stripedRows filters={filters} 
 					emptyMessage="No data found." filterDisplay="row" tableStyle={{ minWidth: '50rem' }}>
 						<Column field="name" header="Name" filterField="name" filter filterPlaceholder="Filter" style={{ width: '20%' }}></Column>
 						<Column field="surname" header="Surname" filterField="surname" filter filterPlaceholder="Filter" style={{ width: '20%' }}></Column>
 						<Column field="pcname" header="PC Name" filterField="pcname" filter filterPlaceholder="Filter" style={{ width: '20%' }}></Column>
 						<Column field="appName" header="App Name" filterField="appName" filter filterPlaceholder="Filter" style={{ width: '20%' }}></Column>
 						<Column field="tabName" header="Tab Name" style={{ width: '20%' }}></Column>
-						<Column field="logDate" header="Log Date" style={{ width: '20%' }}></Column>
+						<Column field="logDate" header="Log Date" sortable style={{ width: '20%' }}></Column>
 						<Column field="timeSpent" header="Time Spent" style={{ width: '20%' }}></Column>
 
 					</DataTable>

@@ -1,9 +1,5 @@
-@import "primereact/resources/themes/lara-light-teal/theme.css";
+@import "primereact/resources/themes/viva-light/theme.css";
 @import "primereact/resources/primereact.min.css";
 @import "primeicons/primeicons.css";
 @import "primeflex/primeflex.css";
 
-.p-menu {
-    border: none; /* Tüm kenarlıkları kaldır */
-    border-radius: 0px; /* Köşe yuvarlaklıklarını kaldır */
-}
