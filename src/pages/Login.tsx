@@ -7,6 +7,8 @@ import { BASEURL } from '../constants';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+	let [state, setState] = useState({ error: false});
+
   return (
     <>
       <div className="flex align-items-center justify-content-center mt-8">
@@ -22,10 +24,10 @@ const Login = () => {
 
           <div>
             <label htmlFor="email" className="block text-900 font-medium mb-2">Email</label>
-            <InputText id="email" type="text" placeholder="Email address" className="w-full mb-3" onChange={(e) => setEmail(e.target.value)} />
+            <InputText invalid ={state.error} id="email" type="text" placeholder="Email address" className="w-full mb-3" onChange={(e) => setEmail(e.target.value)} />
 
             <label htmlFor="password" className="block text-900 font-medium mb-2">Password</label>
-            <InputText id="password" type="password" placeholder="Password" className="w-full mb-3" onChange={(e) => setPassword(e.target.value)} />
+            <InputText invalid ={state.error} id="password" type="password" placeholder="Password" className="w-full mb-3" onChange={(e) => setPassword(e.target.value)} />
 
             <div className="flex align-items-center justify-content-between mb-6">
               <a className="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer">Forgot your password?</a>
@@ -43,11 +45,13 @@ const Login = () => {
       password: password
     })
       .then(response => {
+        setState({error: false});
         localStorage.setItem('accountCode', response.data.accountCode);
         localStorage.setItem('sessionKey', response.data.sessionKey);
         window.open('/admin/userloglist', '_self');
       })
       .catch(error => {
+				setState({error: true});
         console.error("Api request error:  ", error);
       });
   }
