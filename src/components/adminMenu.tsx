@@ -4,7 +4,7 @@ import { Menubar } from 'primereact/menubar';
 const AdminMenu = () => {
     const start = (
         <>
-        <a href="/admin">
+        <a href="/admin/userloglist">
         <img src="/images/logo.png" height="30" className="p-mr-2"/>
         </a>
         </>

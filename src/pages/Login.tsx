@@ -45,7 +45,7 @@ const Login = () => {
       .then(response => {
         localStorage.setItem('accountCode', response.data.accountCode);
         localStorage.setItem('sessionKey', response.data.sessionKey);
-        window.open('/admin', '_self');
+        window.open('/admin/userloglist', '_self');
       })
       .catch(error => {
         console.error("Api request error:  ", error);
