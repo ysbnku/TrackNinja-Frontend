@@ -16,6 +16,9 @@ const Home: React.FC = () => {
                         <p className="mt-0 mb-4 text-700 line-height-3">Track Ninja helps you monitor and analyze user activity on Mac, providing detailed reports on system and application usage.</p>
                         <Button label="Sign In" className="mr-3 p-button-raised" link onClick={() => window.open('/login', '_self')} />
                         <Button label="Register" className="p-button-raised" link onClick={() => window.open('/register', '_self')} />
+                        < a href='/TrackNinja.zip'>
+                        <Button label="Get Download App" className="p-button-raised"/>
+                        </a>
                     </section>
                 </div>
                 <div className="col-12 md:col-6 overflow-hidden">
