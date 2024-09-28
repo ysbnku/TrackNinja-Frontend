@@ -3,6 +3,7 @@ import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { BASEURL } from '../constants';
+import { LOGO } from '../constants';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -15,7 +16,7 @@ const Login = () => {
         <div className="surface-card p-4 shadow-2 border-round w-full lg:w-6">
           <div className="text-center mb-5">
           <a href="/">
-          <img src="/images/logo.png" alt="hyper" height={50} className="mb-3" />
+          <img src={LOGO} alt="hyper" height="70" className="mb-1" />
           </a>
             <div className="text-900 text-3xl font-medium mb-3">Welcome</div>
             <span className="text-600 font-medium line-height-3">Don't have an account?</span>

@@ -1,11 +1,12 @@
 import React from "react";
 import { Menubar } from 'primereact/menubar';
+import { LOGO } from '../constants';
 
 const AdminMenu = () => {
     const start = (
         <>
         <a href="/admin/userloglist">
-        <img src="/images/logo.png" height="30" className="p-mr-2"/>
+        <img src={LOGO} height="30" className="p-mr-2"/>
         </a>
         </>
     );

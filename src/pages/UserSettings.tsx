@@ -105,7 +105,6 @@ const UserSettings: React.FC = () => {
 						<Column field="isIconVisible" header="Icon Visibility" body={isIconVisibleBody} className="text-center" bodyClassName="text-center" editor={(options) => statusEditorWithPremium(options)} style={{ width: '5%' }}></Column>
 						<Column field="isApproved" header="Approval" body={isApprovedBody} className="text-center" bodyClassName="text-center" editor={(options) => statusEditor(options)} style={{ width: '5%' }}></Column>
 						<Column rowEditor={true} headerStyle={{ width: '10%' }} bodyStyle={{ textAlign: 'center' }}></Column>
-
 					</DataTable>
 				</div>
 			</div>

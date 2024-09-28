@@ -3,6 +3,7 @@ import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { BASEURL } from '../constants';
 import { Dropdown } from 'primereact/dropdown';
+import { LOGO } from '../constants';
 
 import axios, { AxiosError, AxiosResponse } from 'axios';
 
@@ -24,7 +25,7 @@ const Register = () => {
                 <div className="surface-card p-4 shadow-2 border-round w-full lg:w-6">
                     <div className="text-center mb-5">
                         <a href="/">
-                            <img src="/images/logo.png" alt="hyper" height={50} className="mb-3" />
+                            <img src={LOGO} alt="hyper" height={50} className="mb-3" />
                         </a>
                         <div className="text-900 text-3xl font-medium mb-3">Register your account</div>
                     </div>
