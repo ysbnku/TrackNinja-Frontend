@@ -7,6 +7,8 @@ import { InputText } from 'primereact/inputtext';
 import { Checkbox } from "primereact/checkbox";
 import LeftMenu from '../components/leftMenu';
 import AdminMenu from '../components/adminMenu';
+import { Image } from 'primereact/image';
+import { Button } from 'primereact/button';
 
 const UserSettings: React.FC = () => {
 
@@ -17,6 +19,13 @@ const UserSettings: React.FC = () => {
 	};
 
 	const statusEditor = (options: any) => {
+		return <Checkbox checked={options.value} onChange={(e) => options.editorCallback(e.checked)} />;
+	};
+
+	const statusEditorWithPremium = (options: any) => {
+		if (localStorage.getItem('license') == "Basic") {
+			return <Button icon="pi pi-lock" rounded text severity="warning" aria-label="Notification" />
+		}
 		return <Checkbox checked={options.value} onChange={(e) => options.editorCallback(e.checked)} />;
 	};
 
@@ -39,6 +48,9 @@ const UserSettings: React.FC = () => {
 	};
 
 	const numberEditor = (options: any) => {
+		if (localStorage.getItem('license') == "Basic") {
+			return <Button icon="pi pi-lock" rounded text severity="warning" aria-label="Notification" />
+		}
 		return <InputText type="text" className="p-inputtext-sm w-10" value={options.value} onChange={(e) => options.editorCallback(e.target.value)} />;
 	};
 
@@ -83,15 +95,15 @@ const UserSettings: React.FC = () => {
 			<div className="grid h-screen">
 				<LeftMenu />
 				<div className="col">
-					<DataTable value={state.data} dataKey="id" paginator rows={15} editMode="row" onRowEditComplete={onRowEditComplete} tableStyle={{ minWidth: '50rem' }}>
+					<DataTable value={state.data} size={"small"} dataKey="id" paginator rows={15} editMode="row" onRowEditComplete={onRowEditComplete} tableStyle={{ minWidth: '50rem' }}>
 						<Column field="pcname" header="PC Name" ></Column>
-						<Column field="name" header="Name" editor={(options) => textEditor(options)} style={{ width: '35%' }}></Column>
-						<Column field="surname" header="Surname" editor={(options) => textEditor(options)} style={{ width: '30%' }}></Column>
-						<Column field="inactivityTime" header="Inactivity Time" editor={(options) => numberEditor(options)} style={{ width: '5%' }}></Column>
-						<Column field="isSendTab" header="Send Tab" body={isSendTabBody} editor={(options) => statusEditor(options)} style={{ width: '5%' }}></Column>
-						<Column field="isMenuVisible" header="Menu Visibility" body={isMenuVisibleBody} editor={(options) => statusEditor(options)} style={{ width: '5%' }}></Column>
-						<Column field="isIconVisible" header="Icon Visibility" body={isIconVisibleBody} editor={(options) => statusEditor(options)} style={{ width: '5%' }}></Column>
-						<Column field="isApproved" header="Approval" body={isApprovedBody} editor={(options) => statusEditor(options)} style={{ width: '5%' }}></Column>
+						<Column field="name" header="Name" editor={(options) => textEditor(options)} style={{ width: '25%' }}></Column>
+						<Column field="surname" header="Surname" editor={(options) => textEditor(options)} style={{ width: '25%' }}></Column>
+						<Column field="inactivityTime" header="Inactivity Time" className="text-center" bodyClassName="text-center" editor={(options) => numberEditor(options)} style={{ width: '5%' }}></Column>
+						<Column field="isSendTab" header="Send Tab" body={isSendTabBody} className="text-center" bodyClassName="text-center" editor={(options) => statusEditorWithPremium(options)} style={{ width: '5%' }}></Column>
+						<Column field="isMenuVisible" header="Menu Visibility" body={isMenuVisibleBody} className="text-center" bodyClassName="text-center" editor={(options) => statusEditorWithPremium(options)} style={{ width: '5%' }}></Column>
+						<Column field="isIconVisible" header="Icon Visibility" body={isIconVisibleBody} className="text-center" bodyClassName="text-center" editor={(options) => statusEditorWithPremium(options)} style={{ width: '5%' }}></Column>
+						<Column field="isApproved" header="Approval" body={isApprovedBody} className="text-center" bodyClassName="text-center" editor={(options) => statusEditor(options)} style={{ width: '5%' }}></Column>
 						<Column rowEditor={true} headerStyle={{ width: '10%' }} bodyStyle={{ textAlign: 'center' }}></Column>
 
 					</DataTable>

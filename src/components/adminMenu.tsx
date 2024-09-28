@@ -15,7 +15,8 @@ const AdminMenu = () => {
             <a href="/profile">
             <img src="/images/user3.jpg" height="30" className="p-1" />
             <span>Welcome, </span>
-            <span>Yavuz Selim Bitmez</span>
+            <span>{localStorage.getItem('nameSurname')}</span>
+            
             </a>
         </div>
     );

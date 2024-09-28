@@ -38,7 +38,7 @@ const UserLogList: React.FC = () => {
 			<div className="grid h-screen">
 			<LeftMenu />
 				<div className="col">
-					<DataTable value={state.logs} dataKey="id" paginator rows={15} rowsPerPageOptions={[20, 25, 35, 50]} stripedRows filters={filters} 
+					<DataTable value={state.logs} dataKey="id" size={"small"} paginator rows={20} sortField="logDate" sortOrder={-1} rowsPerPageOptions={[20, 25, 35, 50]} stripedRows filters={filters} 
 					emptyMessage="No data found." filterDisplay="row" tableStyle={{ minWidth: '50rem' }}>
 						<Column field="name" header="Name" filterField="name" filter filterPlaceholder="Filter" style={{ width: '15%' }}></Column>
 						<Column field="surname" header="Surname" filterField="surname" filter filterPlaceholder="Filter" style={{ width: '15%' }}></Column>

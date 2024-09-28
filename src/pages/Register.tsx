@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { BASEURL } from '../constants';
+import { Dropdown } from 'primereact/dropdown';
 
 import axios, { AxiosError, AxiosResponse } from 'axios';
 
@@ -11,6 +12,8 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [bindingid, setBindingid] = useState('');
+    const [license, setLicense] = useState('Basic');
+    const licensePlans = ["Basic","Premium","Enterprise"];
     useEffect(() => {
         setBindingid("#TN" + Date.now());
     }, []);
@@ -40,6 +43,9 @@ const Register = () => {
 
                         <label htmlFor="bindingid" className="block text-900 font-medium mb-2">Binding ID</label>
                         <InputText id="bindingid" disabled type="text" placeholder={bindingid} className="w-full mb-3" />
+                      
+                        <label htmlFor="bindingid" className="block text-900 font-medium mb-2">Select a Plan</label>
+                        <Dropdown value={license} onChange={(e) => setLicense(e.value)} options={licensePlans} optionLabel="name" className="w-full mb-3" checkmark={true} highlightOnSelect={false} />
 
                         <Button label="Register" icon="pi pi-user" className="w-full" onClick={didTappedRegister} />
                     </div>

@@ -47,6 +47,8 @@ const Login = () => {
       .then(response => {
         setState({error: false});
         localStorage.setItem('accountCode', response.data.accountCode);
+        localStorage.setItem('nameSurname', response.data.nameSurname);
+        localStorage.setItem('license', response.data.license);
         localStorage.setItem('sessionKey', response.data.sessionKey);
         window.open('/admin/userloglist', '_self');
       })
